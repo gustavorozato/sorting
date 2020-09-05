@@ -35,7 +35,7 @@ public class Executor {
         for (Sorting sort : sortingAlgorithms) {
             startTime = System.nanoTime();
             sort.run(this.array);
-            System.out.println(String.format("%s took %d", sort.name(), System.nanoTime() - startTime));
+            System.out.println(String.format("%s took %d nanoseconds", sort.name(), System.nanoTime() - startTime));
         }
     }
 }
