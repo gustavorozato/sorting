@@ -3,6 +3,7 @@ package utils;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.Optional;
 
 public class File {
@@ -16,6 +17,12 @@ public class File {
         return new File(fileName);
     }
 
+    public static int[] getLineNumbers(String s) {
+        return Arrays.stream(s.split(","))
+                .mapToInt(s1 -> Integer.parseInt(s1))
+                .toArray();
+    }
+
     public Optional<String> getFileLine() {
         Optional<String> read = Optional.empty();
         try {
@@ -27,4 +34,6 @@ public class File {
 
         return read;
     }
+
+
 }
