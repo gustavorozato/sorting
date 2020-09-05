@@ -8,11 +8,11 @@ import java.util.List;
 public class Executor {
 
     private static final String DEFAULT_STRING_ARRAY = "6,5,1,2,4,3";
-    private final List<Sorting> sortings;
+    private final List<Sorting> sortingAlgorithms;
     private final int array[];
 
-    private Executor(List<Sorting> sortings, int[] array) {
-        this.sortings = sortings;
+    private Executor(List<Sorting> sortingAlgorithms, int[] array) {
+        this.sortingAlgorithms = sortingAlgorithms;
         this.array = array;
     }
 
@@ -23,16 +23,16 @@ public class Executor {
 
         int[] array = File.getLineNumbers(file.getFileLine().orElse(DEFAULT_STRING_ARRAY));
 
-        List<Sorting> sortings = new ArrayList<>();
-        sortings.add(new QuickSort());
+        List<Sorting> sortingAlgorithms = new ArrayList<>();
+        sortingAlgorithms.add(new QuickSort());
 
-        Executor executor = new Executor(sortings, array);
+        Executor executor = new Executor(sortingAlgorithms, array);
         executor.run();
     }
 
     private void run() {
         long startTime;
-        for (Sorting sort : sortings) {
+        for (Sorting sort : sortingAlgorithms) {
             startTime = System.nanoTime();
             sort.run(this.array);
             System.out.println(String.format("%s took %d", sort.name(), System.nanoTime() - startTime));
