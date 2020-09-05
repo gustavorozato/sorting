@@ -2,21 +2,27 @@ package sorts;
 
 public class QuickSort implements Sorting {
     private static final String QUICKSORT_NAME = "Quicksort";
+    private int resultArray[];
 
     @Override
-    public String name() {
-        return QUICKSORT_NAME;
+    public String getName() {
+        return this.QUICKSORT_NAME;
     }
 
     @Override
-    public int[] run(int array[]) {
+    public int[] getResultArray() {
+        return this.resultArray;
+    }
+
+    @Override
+    public void run(int array[]) {
         int lastArrayIndex = array.length - 1;
         int[] auxArray = new int[array.length];
 
         System.arraycopy(array, 0, auxArray, 0, lastArrayIndex);
         sort(auxArray, 0, lastArrayIndex);
 
-        return auxArray;
+        this.resultArray = auxArray;
     }
 
     private void sort(int array[], int begin, int end) {
@@ -30,7 +36,7 @@ public class QuickSort implements Sorting {
 
     private int partition(int array[], int begin, int end) {
         int pivot = array[end];
-        int i = (begin-1);
+        int i = (begin - 1);
 
         for (int j = begin; j < end; j++) {
             if (array[j] <= pivot) {
@@ -42,8 +48,8 @@ public class QuickSort implements Sorting {
             }
         }
 
-        int swapTemp = array[i+1];
-        array[i+1] = array[end];
+        int swapTemp = array[i + 1];
+        array[i + 1] = array[end];
         array[end] = swapTemp;
 
         return i + 1;
