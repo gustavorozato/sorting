@@ -1,5 +1,6 @@
 package sorts;
 
 public interface Sorting {
-    public int[] sort(int[] array);
+    public int[] run(int[] array);
+    public String name();
 }
