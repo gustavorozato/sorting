@@ -1,7 +1,13 @@
 package sorts;
 
 public interface Sorting {
-    public void run(int array[]);
-    public String getName();
-    public int[] getResultArray();
+    void run(int[] array);
+    String getName();
+    int[] getResultArray();
+
+    static int[] copyArray(int[] toCopy, int arraySize) {
+        int[] auxArray = new int[arraySize];
+        System.arraycopy(toCopy, 0, auxArray, 0, arraySize);
+        return auxArray;
+    }
 }

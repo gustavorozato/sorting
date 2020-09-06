@@ -1,8 +1,8 @@
 package sorts;
 
 public class BubbleSort implements Sorting {
-    private static final String BUBBLESORT_NAME = "Bubblesort";
-    private int resultArray[];
+    private static final String BUBBLESORT_NAME = "Bubbl esort";
+    private int[] resultArray;
 
     @Override
     public String getName() {
@@ -15,24 +15,28 @@ public class BubbleSort implements Sorting {
     }
 
     @Override
-    public void run(int array[]) {
+    public void run(int[] array) {
         int lastArrayIndex = array.length - 1;
-        int[] auxArray = new int[array.length];
-
-        System.arraycopy(array, 0, auxArray, 0, lastArrayIndex);
+        int[] auxArray = Sorting.copyArray(array, array.length);
         sort(auxArray, lastArrayIndex);
-
         this.resultArray = auxArray;
     }
 
-    private void sort(int array[], int lastArrayIndex) {
-        for (int i = 0; i <= lastArrayIndex; i++) {
-            for (int j = 0; j <= lastArrayIndex - i - 1; j++) {
+    private void sort(int[] array, int lastArrayIndex) {
+        boolean swapped;
+        for (int i = 0; i < lastArrayIndex; i++) {
+            swapped = false;
+            for (int j = 0; j < lastArrayIndex - i; j++) {
                 if (array[j] > array[j + 1]) {
-                    int aux = array[j];
+                    int swapTemp = array[j];
                     array[j] = array[j + 1];
-                    array[j + 1] = aux;
+                    array[j + 1] = swapTemp;
+                    swapped = true;
                 }
+            }
+
+            if (!swapped) {
+                break;
             }
         }
     }

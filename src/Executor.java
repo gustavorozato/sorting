@@ -1,5 +1,6 @@
 import sorts.BubbleSort;
 import sorts.QuickSort;
+import sorts.SelectionSort;
 import sorts.Sorting;
 import utils.File;
 
@@ -17,21 +18,6 @@ public class Executor {
         this.sortingAlgorithms = sortingAlgorithms;
         this.array = array;
         this.showSortedArray = showSortedArray;
-    }
-
-    public static void main(String[] args) {
-        if (args.length < 1) return;
-
-        File file = File.getFileInstance(args[0]);
-
-        int[] array = File.getLineNumbers(file.getFileLine().orElse(DEFAULT_STRING_ARRAY));
-
-        List<Sorting> sortingAlgorithms = new ArrayList<>();
-        sortingAlgorithms.add(new BubbleSort());
-        sortingAlgorithms.add(new QuickSort());
-
-        Executor executor = new Executor(sortingAlgorithms, array, true);
-        executor.run();
     }
 
     private void run() {
@@ -54,5 +40,21 @@ public class Executor {
             builder.append(value).append(" ");
         }
         System.out.println(builder.toString());
+    }
+
+    public static void main(String[] args) {
+        if (args.length < 1) return;
+
+        File file = File.getFileInstance(args[0]);
+
+        int[] array = File.getLineNumbers(file.getFileLine().orElse(DEFAULT_STRING_ARRAY));
+
+        List<Sorting> sortingAlgorithms = new ArrayList<>();
+        sortingAlgorithms.add(new BubbleSort());
+        sortingAlgorithms.add(new QuickSort());
+        sortingAlgorithms.add(new SelectionSort());
+
+        Executor executor = new Executor(sortingAlgorithms, array, true);
+        executor.run();
     }
 }
