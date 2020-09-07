@@ -1,7 +1,4 @@
-import sorts.BubbleSort;
-import sorts.QuickSort;
-import sorts.SelectionSort;
-import sorts.Sorting;
+import sorts.*;
 import utils.File;
 
 import java.util.ArrayList;
@@ -11,7 +8,7 @@ public class Executor {
 
     private static final String DEFAULT_STRING_ARRAY = "6,5,1,2,4,3";
     private final List<Sorting> sortingAlgorithms;
-    private final int array[];
+    private final int[] array;
     private final boolean showSortedArray;
 
     private Executor(List<Sorting> sortingAlgorithms, int[] array, boolean showSortedArray) {
@@ -25,7 +22,7 @@ public class Executor {
         for (Sorting sorting : sortingAlgorithms) {
             startTime = System.nanoTime();
             sorting.run(this.array);
-            System.out.println(String.format("%s took %d nanoseconds", sorting.getName(), System.nanoTime() - startTime));
+            System.out.printf("%s took %d nanoseconds%n", sorting.getName(), System.nanoTime() - startTime);
 
             if (this.showSortedArray) {
                 this.printResult(sorting);
@@ -35,7 +32,7 @@ public class Executor {
 
     private void printResult(Sorting sorting) {
         StringBuilder builder = new StringBuilder();
-        System.out.println(String.format("Showing sorted array for %s", sorting.getName()));
+        System.out.printf("Showing sorted array for %s%n", sorting.getName());
         for (int value : sorting.getResultArray()) {
             builder.append(value).append(" ");
         }
@@ -53,6 +50,7 @@ public class Executor {
         sortingAlgorithms.add(new BubbleSort());
         sortingAlgorithms.add(new QuickSort());
         sortingAlgorithms.add(new SelectionSort());
+        sortingAlgorithms.add(new MergeSort());
 
         Executor executor = new Executor(sortingAlgorithms, array, true);
         executor.run();

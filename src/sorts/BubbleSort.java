@@ -1,7 +1,7 @@
 package sorts;
 
 public class BubbleSort implements Sorting {
-    private static final String BUBBLESORT_NAME = "Bubbl esort";
+    private static final String BUBBLESORT_NAME = "Bubble sort";
     private int[] resultArray;
 
     @Override
